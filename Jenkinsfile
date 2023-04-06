@@ -12,7 +12,7 @@ devip = "172.31.36.195"
 stages {
 stage("clone"){
 steps {
-sh "sudo git clone https://github.com/NishaPatil98/3_repo.git"
+sh "git clone https://github.com/NishaPatil98/3_repo.git"
 
 }
 }
