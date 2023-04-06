@@ -22,7 +22,7 @@ stage("copy-in-dev") {
 steps {
 sh "sudo yum install httpd -y"
 sh "sudo service httpd start"
-sh "scp -R /mnt/branches/3_repo nisha@${devip}:/var/www/html/"
+sh "sudo scp -R /mnt/branches/3_repo nisha@${devip}:/var/www/html/"
 } 
 }
 }
