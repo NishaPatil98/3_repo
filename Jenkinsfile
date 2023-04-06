@@ -7,7 +7,7 @@ customWorkspace "/mnt/branches"
 }
 }
 environment {
-devip = "172.31.36.195"
+qaip = "172.31.6.127"
 }
 stages {
 stage("clone"){
@@ -17,13 +17,25 @@ sh "git clone https://github.com/NishaPatil98/3_repo.git"
 
 }
 }
-stage("copy-in-dev") {
-
+stage("install") {
+  agent {
+    label {
+    label "qa"
+      customWorkspace "/mnt/branches"
+    }
+  }
 steps {
 sh "sudo yum install httpd -y"
 sh "sudo service httpd start"
-sh "sudo scp -R /mnt/branches/3_repo nisha@${devip}:/var/www/html/"
+
 } 
 }
+  stage ("copy-to qa"){
+    steps {
+      steps {
+      sh "scp -r /mnt/branches/3_repo nisha@${qaip}:/var/www/html/"
+      }
+    }
+  }
 }
 }
